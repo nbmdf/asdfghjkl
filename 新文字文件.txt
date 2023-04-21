@@ -1,0 +1,178 @@
+LED:
+#define LED2
+void setup(){
+ pinMode(LED, OUTPUT);
+
+}
+
+void loop() {
+digitalWrite(LED, HIGH);
+delay(500);
+digitalWrite(LED, LOW);
+delay(500);
+}
+
+按鈕開關:
+int ledPin = 13;     // 定義 LED 腳位
+int buttonPin = 2;   // 定義按鈕腳位
+int buttonState = 0; // 定義按鈕狀態
+
+void setup() {
+  pinMode(ledPin, OUTPUT);       // 設定 LED 腳位為輸出
+  pinMode(buttonPin, INPUT);     // 設定按鈕腳位為輸入
+}
+
+void loop() {
+  buttonState = digitalRead(buttonPin); // 讀取按鈕狀態
+
+  if (buttonState == HIGH) {    // 如果按鈕被按下
+    digitalWrite(ledPin, HIGH); // LED 亮
+  } else {                      // 否則
+    digitalWrite(ledPin, LOW);  // LED 暗
+  }
+}
+
+繼電器:
+int btnState = 0;
+void setup(){
+pinMode(2, INPUT);
+pinMode(4, INPUT);
+}
+
+void loop(){
+if (digitalRead(2)==HIGH){
+digitalWrite(4, HIGH);
+delay(100);
+digitalWrite(4, LOW);
+ }
+}
+
+觸控開關:
+const int TouchPin=2;
+const int ledPin=3;
+
+void setup(){
+pinMode(TouchPin, INPUT);
+pinMode(ledPin, OUTPUT);
+}
+void loop() {
+int sensorValue = digitalRead(TouchPin);
+if(sensorValue == 1){
+digitalWriite(ledPin, HIGH);
+}
+else{
+digitalWrite(ledPin, LOW);
+    }
+}
+
+蜂鳴器:
+#define F=6;
+void setup() {
+pinMode(6, OUTPUT);
+}
+
+void loop() {
+digitalWrite(6, HIGH);
+delay(1000);
+digitalWrite(6, LOW);
+delay(1000);
+}
+
+紅外線感測器:
+
+#define PIR_MOTION_SENSOR 2 
+
+void setup() {
+pinMode(PIR_MOTION_SENSOR, INPUT);
+Serial.begin(9600);
+
+}
+void loop() {
+if(digitalRead(PIR_MOTION_SENSOR))
+Serial.println("Hi,people is coming");
+else
+ Serial.println("watching");
+
+ delay(200);
+}
+
+超聲波感測器
+
+#include <Ultrasonic.h>
+Ultrasonic ultrasonic(7);
+
+void setup() {
+    Serial.begin(9600);
+
+
+}
+
+void loop() {
+long RangeInInches;
+long cms;
+
+cms = ultrasonic.read();
+Serial.print(cms);
+Serial.println("cm");
+}
+
+
+LCD
+#include <Wire.h>
+#include "rgb_lcd.h"
+rgb_lcd lcd;
+
+const int colorR = 255;
+const int colorG = 0;
+const int colorB = 0;
+void setup() {
+
+lcd.begin(16,2);
+
+lcd.setRGB(colorR,colorG,colorB);
+
+lcd.print("hello, world!");
+ 
+delay(1000);
+
+}
+
+void loop() {
+lcd.setCursor(0, 1);
+lcd.print(millis()/1000);
+
+delay(100);
+
+}
+
+
+音量感測器
+
+const int pinAdc = A0;
+
+void setup()
+{
+  Serial.begin(115200);
+}
+
+void loop()
+{
+    long sum = 0;
+    for(int i=0; i<32; i++)
+{
+    sum += analogRead(pinAdc);
+}
+
+sum >>= 5;
+
+Serial.println(sum);
+delay(10);
+
+}
+
+
+
+
+
+
+
